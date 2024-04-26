@@ -1,0 +1,130 @@
+.home {
+  background-color: whitesmoke;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  // border: 1px solid black;
+  border-radius: 20px;
+  height: 85%;
+  width: 70%;
+  display: flex;
+  overflow: hidden;
+  .sidebar {
+    flex: 1;
+    border-right: 1px solid goldenrod;
+    background-color: #c41e3a;
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: black;
+      height: 50px;
+      padding: 10px;
+      margin: 0%;
+
+      color: white;
+
+      .logo {
+        font-weight: bold;
+      }
+
+      .user {
+        display: flex;
+        gap: 10px;
+
+        .img {
+          height: 25px;
+          width: 25px;
+          background-color: aliceblue;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        button {
+          font-size: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .userChat {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      background-color: #e44b8d;
+    }
+
+    .userChatInfo {
+      display: flex;
+      flex-direction: column;
+
+      span {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      p {
+        font-size: 14px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .chat {
+    flex: 2;
+    background-color: black;
+    color: white;
+
+    .chatInfo {
+      border: 1px solid white;
+      height: 50px;
+      background-color: #c41e3a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 10px;
+    }
+    .chatIcons {
+      display: flex;
+      gap: 10px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+  .messages {
+    padding: 10px;
+    background-color: black;
+    height: calc(100% - 120px);
+    overflow: scroll;
+    .message {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      .messageInfo {
+        display: flex;
+        flex-direction: column;
+        color: gray;
+        font-weight: 300;
+      }
+      .messageContent {
+        max-width: 80%;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+      }
+      .p {
+        background-color: #c41e3a;
+        font-weight: 400;
+        padding: 10px 20px;
+        border-radius: 0px 10px 10px 10px;
+      }
+    }
+  }
+}
