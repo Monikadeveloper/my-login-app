@@ -3,12 +3,16 @@ import { IoIosContact } from 'react-icons/io'
 import { FaList } from 'react-icons/fa6'
 import Messages from './Messages'
 import Input from './Input'
+// import { useContext } from 'react'
+// import { ChatContext } from '../ChatContext'
 
 const Chat = () => {
+  // const {data}= useContext(ChatContext);
+
   return (
     <div className="chat">
       <div className="chatInfo">
-        <span>Monika</span>
+        {/* <span>{data.user?.displayName}</span> */}
         <div className="chatIcons">
           <p>
             <FaVideo />

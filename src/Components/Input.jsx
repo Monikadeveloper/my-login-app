@@ -1,16 +1,89 @@
+// import { useContext, useState } from 'react'
+// import { AuthContext } from '../AuthContext'
+// import { ChatContext } from '../ChatContext'
+
+// import { Timestamp, arrayUnion, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
+// import { db, storage } from '../Firebase'
+// import { v4 as uuid } from 'uuid'
+// import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
+import { IoMdAttach } from 'react-icons/io'
+import { useState } from 'react'
+
 const Input = () => {
+  const [text, setText] = useState('')
+  const [img, setImg] = useState(null)
+
+  // const { currentUser } = useContext(AuthContext)
+  // const { data } = useContext(ChatContext)
+  // console.log(currentUser)
+  // console.log(data)
+
+  // const handleSend = async () => {
+  //   if (img) {
+  //     const storageRef = ref(storage, uuid)
+
+  //     const uploadTask = uploadBytesResumable(storageRef, img)
+
+  //     uploadTask.on(async () => {
+  //       await updateDoc(doc(db, 'chats', data.chatId), {
+  //         message: arrayUnion({
+  //           id: uuid,
+  //           text,
+  //           senderId: currentUser.uid,
+  //           date: Timestamp.now(),
+  //           img: getDownloadURL,
+  //         }),
+  //       })
+  //     })
+  //   } else {
+  //     await updateDoc(doc(db, 'chats', data.chatId), {
+  //       message: arrayUnion({
+  //         id: uuid,
+  //         text,
+  //         senderId: currentUser.uid,
+  //         date: Timestamp.now(),
+  //       }),
+  //     })
+  //     await updateDoc(doc(db,"userChats", currentUser.uid),{
+  //     [data.chatId + ".lastMessage"]:{
+  //       text
+  //     },
+  //   [data.chatId + ".date"]: serverTimestamp()})
+  //   }
+  // }
+  // setText('')
+  // setImg(null)
   return (
     <>
       <div className="input-group">
         <input
           type="text"
           className="form-control"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
           aria-label="Text input with segmented dropdown button"
           placeholder="Type something here...."
         />
-        <button type="button" className="btn btn-primary">
-          Send
-        </button>
+        <div className="send">
+          <img src={IoMdAttach} alt="" />
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            id="file"
+            onChange={(e) => setImg(e.target.files[0])}
+          />
+          <label htmlFor="file">
+            <img src={img} alt="" />
+          </label>
+
+          <button
+            type="button"
+            className="btn btn-primary"
+            // onClick={handleSend}
+          >
+            Send
+          </button>
+        </div>
       </div>
     </>
   )
