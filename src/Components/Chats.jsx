@@ -1,69 +1,62 @@
-// import { useContext } from 'react'
-// import Avatar from '../assets/Avatar.jpeg'
+import { useContext, useEffect, useState } from 'react'
+import { AuthContext } from './Authentication/AuthContext'
 
-// import { doc, onSnapshot } from 'firebase/firestore'
-// import { db } from '../Firebase'
-// import { AuthContext } from '../AuthContext'
-// import { ChatContext } from '../ChatContext'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from '../Firebase'
+import { ChatContext } from './Authentication/ChatContext'
+
 const Chats = () => {
-  // const [chats, setChats] = useState([])
-  // const { currenUser } = useContext(AuthContext)
-  // const { dispatch } = useContext(ChatContext)
-  // console.log('-------->chat screen',currenUser, dispatch)
+  const [chats, setChats] = useState([])
+  const { currentUser } = useContext(AuthContext)
+  const { dispatch } = useContext(ChatContext)
 
-  // useEffect(() => {
-  //   const getChats = () => {
-  //     const unsub = onSnapshot(doc(db, 'userChats', 'SF'), (doc) => {
-  //       setChats(doc.data())
-  //     })
-  //     return () => {
-  //       unsub()
-  //     }
-  //   }
-  //   currenUser.uid && getChats()
-  // }, [currenUser.uid])
-  // console.log(chats)
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, 'userChats', currentUser.uid), (doc) => {
+        setChats(doc.data())
+      })
+      return () => {
+        unsub()
+      }
+    }
+    currentUser.uid && getChats()
+  }, [currentUser.uid])
+  // console.log(Object.entries(chats))
 
-  // const handleSubmit = (u) => {
-  //   dispatch({
-  //     type: 'CHANGE_USER',
-  //     payload: u,
-  //   })
-  // }
+  const handleSubmit = (u) => {
+    dispatch({
+      type: 'CHANGE_USER',
+      payload: u,
+    })
+  }
 
   return (
-    <div className="chats">
-      <div className="userChat">
-        
+    <>
+      <div className="chats">
+        {Object.entries(chats)
+          ?.sort((a, b) => b[1].date - a[1].date)
+          .map((chat) => (
+            <div
+              className="userChat"
+              key={chat[0]}
+              onClick={() => handleSubmit(chat[1].userInfo)}
+            >
+              
+                <img
+                  src={chat[1].userInfo.photoURL}
+                  alt=""
+                  style={{ height: '50px', width: '50px', borderRadius: '50%' }}
+                />
+              
+
+              <div className="userChatInfo">
+                <span>{chat[1].userInfo.displayName}</span>
+                <p>{chat[1].lastMessage?.text}</p>
+              </div>
+            </div>
+          ))}
       </div>
-    </div>
+    </>
   )
 }
-
 export default Chats
-
-{
-  /* // <div className="chats"> */
-}
-//   {/* {Object.entries(chats)
-//     ?.sort((a, b) => b[1].date - a[1].date)
-//     .map((chat) => ( */}
-//   <div
-//     className="userChat"
-//     // key={chat[0]}
-//     // onClick={handleSubmit(chat[1].userInfo)}
-//   >
-//     {/* <img
-//       src=""
-//       // src={chat[1].userInfo.photoURL}
-//       alt=""
-//       style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-//     /> */}
-
-//     <div className="userChatInfo">
-//       {/* <span>{chat[1].userInfo.displayName}</span>
-//           <p>{chat[1].lastMessage?.text}</p> */}
-//     </div>
-//   </div>
-//   {/* ))} */}
-// </div>

@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 import { useState } from 'react'
+import Add2 from '../assets/Add2.jpeg'
 
 import { doc, setDoc } from 'firebase/firestore'
 import { auth, db, storage } from '../Firebase'
@@ -16,49 +17,56 @@ import Avatar from '../assets/Avatar.jpeg'
 import { uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 
 function Signup() {
-  const navigate = useNavigate()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [file, setFile] = useState()
   const [err, setErr] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleSubmit = async () => {
     // e.preventDefault()
     alert('clicked')
     const displayName = name
+
     // const email = email
     // const password = password
     try {
       console.log(auth, email, password)
       const res = await createUserWithEmailAndPassword(auth, email, password)
-      const storageRef = ref(storage, displayName)
+      const date = new Date().getTime()
+      const storageRef = ref(storage, `${displayName + date}`)
 
-      const uploadTask = uploadBytesResumable(storageRef, file)
-
-      uploadTask.on(
-        (error) => {
-          setErr(true)
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            updateProfile(res.user, {
+      await uploadBytesResumable(storageRef, file).then(() => {
+        getDownloadURL(storageRef).then(async (downloadURL) => {
+          try {
+            //Update profile
+            await updateProfile(res.user, {
               displayName,
               photoURL: downloadURL,
             })
-            setDoc(doc(db, 'users', res.user.uid), {
+            //create user on firestore
+            await setDoc(doc(db, 'users', res.user.uid), {
               uid: res.user.uid,
               displayName,
               email,
               photoURL: downloadURL,
-            }),
-              setDoc(doc(db, 'userChats', res.user.uid), {})
+            })
+
+            //create empty user chats on firestore
+            await setDoc(doc(db, 'userChats', res.user.uid), {})
             navigate('/login')
-          })
-        }
-      )
+          } catch (err) {
+            console.log(err)
+            setErr(true)
+            setLoading(false)
+          }
+        })
+      })
     } catch (err) {
       setErr(true)
+      setLoading(false)
     }
   }
 
@@ -102,11 +110,11 @@ function Signup() {
         style={{ display: 'none' }}
         type="file"
         id="file"
-        value={file}
-        onChange={(e) => setFile(e.target.files)}
+        // value={file}
+        // onChange={(e) => setFile(e.target.files[0])}
       />
       <label htmlFor="file">
-        <img src={Avatar} alt="" />
+        <img src={Add2} alt="" style={{ height: '50px' }} />
         <span>Add an avatar</span>
       </label>
       <button type="button" className="btn btn-primary" onClick={handleSubmit}>
