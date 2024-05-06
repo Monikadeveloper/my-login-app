@@ -4,9 +4,11 @@ import { IoMdAttach } from 'react-icons/io'
 import { useContext, useState } from 'react'
 import { AuthContext } from './Authentication/AuthContext'
 // import Avatar from '../assets/Avatar.jpeg'
+import { MdOutlineAttachFile } from 'react-icons/md'
 import { ChatContext } from './Authentication/ChatContext'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { db, storage } from '../Firebase'
+// import { IoIosAttach } from 'react-icons/io'
 import {
   Timestamp,
   arrayUnion,
@@ -17,7 +19,7 @@ import {
 
 const Input = () => {
   const [text, setText] = useState('')
-  const [img, setImg] = useState(null)
+  const [img, setImg] = useState()
 
   const { currentUser } = useContext(AuthContext)
   const { data } = useContext(ChatContext)
@@ -81,11 +83,15 @@ const Input = () => {
         <input
           type="text"
           className="form-control"
+          placeholder="Type Something here........."
+          aria-label="Recipient's username with two button addons"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          aria-label="Text input with segmented dropdown button"
-          placeholder="Type something here...."
         />
+        <button className="btn btn-outline-secondary" type="button">
+          <MdOutlineAttachFile/>
+        </button>
+
         <div className="send">
           <img src={IoMdAttach} alt="" />
           <input

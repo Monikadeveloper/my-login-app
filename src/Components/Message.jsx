@@ -25,9 +25,9 @@ function Message({ message }) {
       <div className="messageInfo">
         <img
           src={
-            message.senderId === currentUser.uid
-              ? currentUser.photoURL
-              : data.user.photoURL
+            // message.senderId === currentUser.uid
+            //   ? currentUser.photoURL
+              data.user.photoURL
           }
           alt="dp"
           style={{
@@ -37,11 +37,31 @@ function Message({ message }) {
             objectFit: 'cover',
           }}
         />
-        <span>Just now</span>
       </div>
       <div className="messageContent">
-        <p className="p">{message.text}</p>
-        {message.img && <img src={message.img} alt="" />}
+        {/* <p className="p">{currentUser.data.message.text}</p> */}
+        {/* <p className="p">{currentUser.message}</p> */}
+        {/* <p className="p">{data.user.message.text}</p> */}
+        {/* {message.img && <img src={message.img} alt="" />} */}
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <p className="p2">{message.text}</p>
+
+          <img
+            src={
+              // message.senderId === currentUser.uid
+                 currentUser.photoURL
+              // data.user.photoURL
+            }
+            alt="dp"
+            style={{
+              height: '8vh',
+              width: '4vw',
+              borderRadius: '50%',
+              objectFit: 'cover',
+            }}
+          />
+        </div>
+        <p style={{ marginLeft: '300px' }}> Just now</p>
       </div>
     </div>
   )

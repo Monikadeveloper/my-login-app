@@ -14,7 +14,6 @@
   }
 }
 
-
 .home {
   background-color: whitesmoke;
   height: 100vh;
@@ -27,7 +26,7 @@
   }
 }
 .container {
-  // border: 1px solid black;
+  margin-left: 0%;
   border-radius: 20px;
   height: 85%;
   width: 70%;
@@ -148,18 +147,31 @@
       font-weight: 400;
       padding: 10px 20px;
       border-radius: 0px 10px 10px 10px;
+      display: flex;
+      max-width: max-content;
+    }
+    .p2 {
+      background-color: #c41e3a;
+      font-weight: 400;
+      padding: 10px 20px;
+      border-radius: 10px 10px 0px 10px;
+
+      max-width: max-content;
+      margin-left: 350px;
     }
   }
   &.owner {
     flex-direction: row-reverse;
     .messageContent {
-      align-items: flex-end;
+      align-items: start;
     }
-    p {
-      background-color: #c41e3a;
-      color: white;
-      border-radius: 10px 0px 10px 10px;
-      max-width: max-content;
-    }
+    // p {
+    //   background-color: #c41e3a;
+    //   color: white;
+    //   border-radius: 10px 0px 10px 10px;
+    //   max-width: max-content;
+    //   // display: flex;
+    //   // justify-content: right;
+    // }
   }
 }
