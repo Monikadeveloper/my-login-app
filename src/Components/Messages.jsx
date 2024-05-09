@@ -6,6 +6,7 @@ import { db } from '../Firebase'
 
 const Messages = () => {
   const [messages, setMessages] = useState([])
+  // const [receiveMessages, setReceiveMessages] = useState([])
   const { data } = useContext(ChatContext)
   useEffect(() => {
     const unsub = onSnapshot(doc(db, 'chats', data.chatId), (doc) => {

@@ -79,6 +79,7 @@ const Input = () => {
 
   return (
     <>
+    <div className='input'>
       <div className="input-group">
         <input
           type="text"
@@ -112,6 +113,7 @@ const Input = () => {
             Send
           </button>
         </div>
+      </div>
       </div>
     </>
   )

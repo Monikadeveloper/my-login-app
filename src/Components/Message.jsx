@@ -13,55 +13,75 @@ function Message({ message }) {
   const { currentUser } = useContext(AuthContext)
   const { data } = useContext(ChatContext)
   const ref = useRef()
+  const currentUserId = localStorage.getItem('uid')
+  console.log('🚀 ~ Message ~ currentUserId:', currentUserId)
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behaviour: 'smooth' })
   }, [message])
+
   return (
     <div
       ref={ref}
       className={`message ${message.senderId === currentUser.uid && 'owner'}`}
     >
-      <div className="messageInfo">
-        <img
-          src={
-            // message.senderId === currentUser.uid
-            //   ? currentUser.photoURL
-              data.user.photoURL
-          }
-          alt="dp"
-          style={{
-            height: '8vh',
-            width: '4vw',
-            borderRadius: '50%',
-            objectFit: 'cover',
-          }}
-        />
-      </div>
+      <div className="messageInfo messageContent">
+      {/* <img
+        src={data.user.photoURL}
+        alt="dp"
+        style={{
+          height: '8vh',
+          width: '4vw',
+          borderRadius: '50%',
+          objectFit: 'cover',
+        }}
+      /> */}
       <div className="messageContent">
-        {/* <p className="p">{currentUser.data.message.text}</p> */}
-        {/* <p className="p">{currentUser.message}</p> */}
-        {/* <p className="p">{data.user.message.text}</p> */}
-        {/* {message.img && <img src={message.img} alt="" />} */}
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <p className="p2">{message.text}</p>
-
-          <img
-            src={
-              // message.senderId === currentUser.uid
-                 currentUser.photoURL
-              // data.user.photoURL
-            }
-            alt="dp"
+        {currentUserId !== message.senderId && (
+          <div
+            className="sender"
             style={{
-              height: '8vh',
-              width: '4vw',
-              borderRadius: '50%',
-              objectFit: 'cover',
+              display: 'flex',
+              justifyContent: 'flex-start',
+              margin: '0%',
             }}
-          />
-        </div>
-        <p style={{ marginLeft: '300px' }}> Just now</p>
+          >
+            <img
+              src={data.user.photoURL}
+              alt="dp"
+              style={{
+                height: '8vh',
+                width: '4vw',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
+            <p className="p">{message.text}</p>
+          </div>
+          
+        )}
+        {currentUserId == message.senderId && (
+          <div
+            style={{
+            display:'flex',
+            marginRight:"5vw"
+            }}
+          >
+            <p className="p2">{message.text}</p>
+            <img
+              src={currentUser.photoURL}
+              alt="dp"
+              style={{
+                height: '8vh',
+                width: '4vw',
+                borderRadius: '50%',
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+        )}
+        {/* <p style={{ marginLeft: '300px' }}> Just now</p> */}
+      </div>
       </div>
     </div>
   )

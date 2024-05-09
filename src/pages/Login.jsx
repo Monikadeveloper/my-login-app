@@ -13,6 +13,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password)
+      localStorage.setItem('uid', auth.currentUser.uid)
       alert('found')
       navigate('/home')
     } catch (err) {
