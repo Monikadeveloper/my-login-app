@@ -1,13 +1,14 @@
 // import { useContext, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { IoMdAttach } from 'react-icons/io'
+// import { IoMdAttach } from 'react-icons/io'
 import { useContext, useState } from 'react'
 import { AuthContext } from './Authentication/AuthContext'
-// import Avatar from '../assets/Avatar.jpeg'
-import { MdOutlineAttachFile } from 'react-icons/md'
+import emoji from '../assets/emoji.avif'
+// import { MdOutlineAttachFile } from 'react-icons/md'
 import { ChatContext } from './Authentication/ChatContext'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { db, storage } from '../Firebase'
+import EmojiPicker from 'emoji-picker-react'
 // import { IoIosAttach } from 'react-icons/io'
 import {
   Timestamp,
@@ -20,11 +21,16 @@ import {
 const Input = () => {
   const [text, setText] = useState('')
   const [img, setImg] = useState()
+  const [open, setOpen] = useState(false)
 
   const { currentUser } = useContext(AuthContext)
   const { data } = useContext(ChatContext)
   // console.log(currentUser)
   // console.log(data)
+  const handleEmoji = (e) => {
+    setText((prev) => prev + e.emoji)
+    setOpen(false)
+  }
 
   const handleSend = async () => {
     // e.preventDefault()
@@ -79,41 +85,54 @@ const Input = () => {
 
   return (
     <>
-    <div className='input'>
-      <div className="input-group">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Type Something here........."
-          aria-label="Recipient's username with two button addons"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <button className="btn btn-outline-secondary" type="button">
-          <MdOutlineAttachFile/>
-        </button>
-
-        <div className="send">
-          <img src={IoMdAttach} alt="" />
+      <div className="input">
+        <div className="input-group mb-3">
           <input
-            type="file"
-            style={{ display: 'none' }}
-            id="file"
-            onChange={(e) => setImg(e.target.files[0])}
+            type="text"
+            className="form-control"
+            placeholder="Type Something here........."
+            aria-label="Recipient's username with two button addons"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
-          <label htmlFor="file">
-            <img src={img} alt="" />
-          </label>
+          {/* <button className="btn btn-outline-secondary" type="button">
+            <MdOutlineAttachFile />
+          </button> */}
 
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={handleSend}
+          <div
+            className="send"
+            style={{ display: 'flex', justifyContent: 'flex-end' }}
           >
-            Send
-          </button>
+            {/* <img src={IoMdAttach} alt="" />
+            <input
+              type="file"
+              style={{ display: 'none' }}
+              id="file"
+              onChange={(e) => setImg(e.target.files[0])}
+            />
+            <label htmlFor="file">
+              <img src={img} alt="" />
+            </label> */}
+            <div className="emoji">
+              <img
+                src={emoji}
+                style={{ height: '5vh', cursor: 'pointer' }}
+                alt=""
+                onClick={() => setOpen((prev) => !prev)}
+              />
+              <div className="picker">
+                <EmojiPicker open={open} onEmojiClick={handleEmoji} />
+              </div>
+            </div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleSend}
+            >
+              Send
+            </button>
+          </div>
         </div>
-      </div>
       </div>
     </>
   )

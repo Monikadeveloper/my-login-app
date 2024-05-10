@@ -1,6 +1,6 @@
-import { signOut } from 'firebase/auth'
+// import { signOut } from 'firebase/auth'
 
-import { auth } from '../Firebase'
+// import { auth } from '../Firebase'
 import { useContext } from 'react'
 import { AuthContext } from './Authentication/AuthContext'
 // import { AuthContext } from '../AuthContext'
@@ -20,13 +20,13 @@ const Navbar = () => {
             style={{ height: '25px', width: '25px', 'border-radius': '50%' }}
           />
           <span>{currentUser.displayName}</span>
-          <button
+          {/* <button
             type="button"
             className="btn btn-light"
             onClick={() => signOut(auth)}
           >
             Logout
-          </button>
+          </button> */}
         </div>
       </div>
     </>

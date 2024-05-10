@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { auth } from '../Firebase'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-
 import { Link, useNavigate } from 'react-router-dom'
 
 const Login = () => {
@@ -21,21 +20,28 @@ const Login = () => {
     }
   }
 
+  //
+  const renderInput = () => {
+    return (
+      <div className="input-group mb-3">
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="form-control"
+        placeholder="Enter your mail id"
+        aria-label="Username"
+        aria-describedby="basic-addon1"
+      />
+    </div>
+    )
+  }
+
   return (
     <>
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-        <div className="input-group mb-3">
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="form-control"
-            placeholder="Enter your mail id"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-          />
-        </div>
+      {renderInput()}
         <div className="input-group mb-3">
           <input
             type="Password"

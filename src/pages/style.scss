@@ -32,12 +32,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @include tablet {
-    width: 100%;
-  }
+  // @include tablet {
+  //   width: 100%;
+  // }
 }
 .container {
-  margin-left: 0%;
+  // margin-left: 10%;
   border-radius: 2%;
   height: 100%;
   width: 100%;
@@ -53,7 +53,8 @@
       justify-content: space-between;
       align-items: center;
       background-color: black;
-      height: 9vh;
+      height: 10vh;
+      
       @media screen and (max-width: 480px) {
         height: 120px;
         display: flexbox;
@@ -70,11 +71,16 @@
         display: flexbox;
         justify-content: center;
       }
-      @media screen and (max-width: 1000px) {
-        height: 120px;
-        display: flexbox;
-        justify-content: center;
-      }
+      // @media screen and (max-width: 1200px) {
+      //   height: 120px;
+      //   display: flexbox;
+      //   justify-content: center;
+      // }
+      // @media screen and (max-width: 1400px) {
+      //   height: 120px;
+      //   display: flexbox;
+      //   justify-content: center;
+      // }
 
       padding: 10px;
       // margin-left: 10%;
@@ -99,7 +105,7 @@
           display: inline;
         }
 
-        @media screen and (max-width: 760px) {
+        @media screen and (max-width: 1000px) {
           display: inline;
         }
         .img {
@@ -134,6 +140,9 @@
     @media screen and (max-width: 1000px) {
       display: inline;
     }
+    @media screen and (max-width: 1200px) {
+      display: inline;
+    }
     &:hover {
       background-color: #e44b8d;
     }
@@ -154,16 +163,37 @@
   }
   .input {
     width: 100%;
-    position: static;
+    // position: fixed;
+    margin-bottom: 10vh;
+
+    .emoji {
+      position: relative;
+      .picker {
+        position: absolute;
+        right: 0;
+        bottom: 50px;
+      }
+    }
     @media screen and (max-width: 480px) {
+      margin-bottom: 20vh;
     }
 
     @media screen and (max-width: 760px) {
-      position: static;
+      display: flex;
+      justify-content: center;
+    }
+    @media screen and (max-width: 982px) {
+      display: flex;
+      justify-content: center;
     }
 
-    @media screen and (max-width: 1000px) {
-      position: static;
+    @media screen and (max-width: 1200px) {
+      display: flex;
+      justify-content: center;
+    }
+    @media screen and (max-width: 1400px) {
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -187,10 +217,13 @@
     @media screen and (max-width: 992px) {
       flex: 3;
     }
+    @media screen and (max-width: 1200px) {
+      flex: 3;
+    }
 
     .chatInfo {
       border: 1px solid white;
-      height: 60px;
+      height: 75px;
       background-color: #c41e3a;
       display: flex;
       align-items: center;
@@ -208,7 +241,7 @@
         height: 120px;
       }
       @media screen and (max-width: 1200px) {
-        height: 120px;
+        height: 60px;
       }
     }
     .chatIcons {
@@ -267,15 +300,13 @@
 
       @media screen and (max-width: 1000px) {
         padding: 2%;
-       
       }
       @media screen and (max-width: 1400px) {
         padding: 2%;
-  
       }
     }
     .p2 {
-      background-color:#c41e3a;
+      background-color: #c41e3a;
       font-weight: 400;
       padding: 10px 20px;
       border-radius: 10px 10px 0px 10px;
@@ -307,7 +338,7 @@
       }
       @media screen and (max-width: 1600px) {
         padding: 2%;
-    margin-left: 55vw;
+        margin-left: 55vw;
       }
     }
   }

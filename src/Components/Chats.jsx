@@ -41,17 +41,20 @@ const Chats = () => {
               key={chat[0]}
               onClick={() => handleSubmit(chat[1].userInfo)}
             >
-              
-                <img
-                  src={chat[1].userInfo.photoURL}
-                  alt=""
-                  style={{ height: '50px', width: '50px', borderRadius: '50%' }}
-                />
-              
+              <img
+                src={chat[1].userInfo.photoURL}
+                alt=""
+                style={{ height: '50px', width: '50px', borderRadius: '50%' }}
+              />
 
               <div className="userChatInfo">
                 <span>{chat[1].userInfo.displayName}</span>
-                <p>{chat[1].lastMessage?.text}</p>
+                {/* <p>{chat[1].lastMessage?.text}</p> */}
+                <p>
+                  {chat[1].lastMessage?.text.length > 14
+                    ? `${chat[1].lastMessage.text.slice(0, 13)}...`
+                    : chat[1].lastMessage.text}
+                </p>
               </div>
             </div>
           ))}
