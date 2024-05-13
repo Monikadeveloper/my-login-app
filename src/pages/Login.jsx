@@ -24,16 +24,16 @@ const Login = () => {
   const renderInput = () => {
     return (
       <div className="input-group mb-3">
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="form-control"
-        placeholder="Enter your mail id"
-        aria-label="Username"
-        aria-describedby="basic-addon1"
-      />
-    </div>
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="form-control"
+          placeholder="Enter your mail id"
+          aria-label="Username"
+          aria-describedby="basic-addon1"
+        />
+      </div>
     )
   }
 
@@ -41,7 +41,7 @@ const Login = () => {
     <>
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
-      {renderInput()}
+        {renderInput()}
         <div className="input-group mb-3">
           <input
             type="Password"
@@ -59,7 +59,7 @@ const Login = () => {
       </form>
       {err && <span>Something went wrong</span>}
       <p>
-        You dont have any account?<Link to="/signup">Register</Link>
+        You dont have any account?<Link to="/">Register</Link>
       </p>
     </>
   )

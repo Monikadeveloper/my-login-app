@@ -6,17 +6,15 @@ import Home from './pages/Home'
 import { AuthContext } from './Components/Authentication/AuthContext'
 import { useContext } from 'react'
 
-
 const App = () => {
   const { currentUser } = useContext(AuthContext)
 
- 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={currentUser ? <Home /> : <Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   )
