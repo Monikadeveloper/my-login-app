@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-// import Avatar from '../assets/Avatar.jpeg'
+
 
 import {
   collection,
@@ -11,28 +11,28 @@ import {
   doc,
   updateDoc,
   serverTimestamp,
-  // disablePersistentCacheIndexAutoCeation,
+ 
 } from 'firebase/firestore'
 import { db } from '../Firebase'
 import { AuthContext } from './Authentication/AuthContext'
-// import { ref } from 'firebase/storage'
+
 
 const Search = () => {
   const [userName, setUserName] = useState('')
-  // const [list, setList] = useState([])
+ 
   const [user, setUser] = useState(null)
   const [err, setErr] = useState(false)
   const { currentUser } = useContext(AuthContext)
   const [alluser, setAlluser] = useState(false)
 
   const handleSearch = async () => {
-    // console.log('@@@', data)
+   
     setAlluser(false)
     const q = query(
       collection(db, 'users'),
       where('displayName', '==', userName)
     )
-    console.log('@@@ ===========', userName)
+    
     try {
       const querySnapshot = await getDocs(q)
       querySnapshot.forEach((doc) => {
@@ -47,17 +47,12 @@ const Search = () => {
     setAlluser(!alluser)
 
     const querySnapshot = await getDocs(collection(db, 'users'))
-    querySnapshot.forEach((allusers) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(allusers.id, ' => ', allusers.data())
+    querySnapshot.forEach((doc) => {
+     
+   (doc.id, ' => ', doc.data())
     })
   }
-  //  else {
-  //     console.log("No data available");
-  //   }
-  // }).catch((error) => {
-  //   console.error(error);
-  // });
+  
 
   const handleSelect = async () => {
     const combinedId =
@@ -143,7 +138,7 @@ const Search = () => {
             <div className="userChatInfo">
               <span>{user.displayName}</span>
             </div>
-          </div>
+          </div> 
         )}
       </div>
     </>

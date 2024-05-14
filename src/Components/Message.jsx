@@ -14,7 +14,7 @@ function Message({ message }) {
   const { data } = useContext(ChatContext)
   const ref = useRef()
   const currentUserId = localStorage.getItem('uid')
-  console.log('🚀 ~ Message ~ currentUserId:', currentUserId)
+  
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behaviour: 'smooth' })
@@ -26,16 +26,7 @@ function Message({ message }) {
       className={`message ${message.senderId === currentUser.uid && 'owner'}`}
     >
       <div className="messageInfo messageContent">
-      {/* <img
-        src={data.user.photoURL}
-        alt="dp"
-        style={{
-          height: '8vh',
-          width: '4vw',
-          borderRadius: '50%',
-          objectFit: 'cover',
-        }}
-      /> */}
+  
       <div className="messageContent">
         {currentUserId !== message.senderId && (
           <div
@@ -80,7 +71,7 @@ function Message({ message }) {
             />
           </div>
         )}
-        {/* <p style={{ marginLeft: '300px' }}> Just now</p> */}
+       
       </div>
       </div>
     </div>

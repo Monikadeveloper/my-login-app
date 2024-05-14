@@ -132,23 +132,24 @@
     gap: 10px;
     color: white;
     cursor: pointer;
-    @media screen and (max-width: 480px) {
-      display: inline;
-    }
-
-    @media screen and (max-width: 760px) {
-      display: inline;
-    }
-
-    @media screen and (max-width: 1000px) {
-      display: inline;
-    }
-    @media screen and (max-width: 1200px) {
-      display: inline;
-    }
     &:hover {
       background-color: #e44b8d;
     }
+    @media screen and (max-width: 480px) {
+      display: column;
+    }
+
+    @media screen and (max-width: 760px) {
+      display: column;
+    }
+
+    @media screen and (max-width: 1000px) {
+      display: column;
+    }
+    @media screen and (max-width: 1200px) {
+      display: column;
+    }
+   
 
     .userChatInfo {
       display: flex;

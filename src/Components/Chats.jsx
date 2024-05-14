@@ -21,7 +21,6 @@ const Chats = () => {
     }
     currentUser.uid && getChats()
   }, [currentUser.uid])
-  // console.log(Object.entries(chats))
 
   const handleSubmit = (u) => {
     dispatch({
@@ -49,11 +48,11 @@ const Chats = () => {
 
               <div className="userChatInfo">
                 <span>{chat[1].userInfo.displayName}</span>
-                {/* <p>{chat[1].lastMessage?.text}</p> */}
+
                 <p>
                   {chat[1].lastMessage?.text.length > 14
                     ? `${chat[1].lastMessage.text.slice(0, 13)}...`
-                    : chat[1].lastMessage.text}
+                    : chat[1].lastMessage?.text}
                 </p>
               </div>
             </div>

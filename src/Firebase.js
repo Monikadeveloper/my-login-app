@@ -13,11 +13,9 @@ const firebaseConfig = {
   messagingSenderId: '540288986901',
   appId: '1:540288986901:web:f4c9e7938919cb8eb1831c',
 
-  // databaseURL: 'https://login-auth-fc74d-default-rtdb.firebaseio.com/',
 }
 const app = initializeApp(firebaseConfig)
 
-console.log(app)
-export const auth = getAuth()
+export const auth = getAuth(app)
 export const db = getFirestore()
 export const storage = getStorage()
