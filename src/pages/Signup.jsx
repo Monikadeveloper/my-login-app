@@ -26,18 +26,13 @@ function Signup() {
     alert('clicked')
     const displayName = name
 
-    // const email = email
-    // const password = password
+   
     try {
       console.log(auth, email, password)
       const res = await createUserWithEmailAndPassword(auth, email, password)
       const date = new Date().getTime()
       const storageRef = ref(storage, `${displayName + date}`)
-      // if (file === null) return
-      // const imageRef = ref(storage, `${file.name}`)
-      // uploadBytes(imageRef, file).then(() => {
-      //   alert('image Uploaded')
-      // })
+
 
       await uploadBytesResumable(storageRef, file).then(() => {
         getDownloadURL(storageRef).then(async (downloadURL) => {
